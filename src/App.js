@@ -5,19 +5,12 @@ import { useEffect } from "react";
 export const App = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  // const [userNameLogin, setUserNameLogin] = useState('');
-  // const [passwordLogin, setPasswordLogin] = useState('');
   const [registration, setRegistration] = useState({});
   const [acess, setAcess] = useState(false);
 
   const login = () => {
     if(registration.username === userName && registration.password === password) {
       setAcess(true);
-      return (
-        <div>
-          <h1>Ulogovali ste se!</h1>
-        </div>
-      )
     } else if (registration.username === userName || registration.password === password) {
       alert('niste uneli odgovaraje korisnicko ime ili lozinku');
       setUserName('');
@@ -32,7 +25,7 @@ export const App = () => {
   if(acess) {
     return(
       <div className="container">
-        Usli ste tamo gde niko do sada nije!
+        <h1>Usli ste tamo gde niko do sada nije!</h1>
         <button className="btn" onClick={logOut}>Izloguj se</button>
       </div>
     )
@@ -79,7 +72,7 @@ export const App = () => {
           <label htmlFor="">Lozinka:  </label>
           <input type="text" value={password} onChange={passwordInput}></input>
        </div>
-       <button className="button" onClick={login}>Login</button>
+       <button className="button" onClick={login}> Login </button>
        <button className="btn" onClick={handleButtonDelete} >Obrisi moj nalog</button>
     </div>
     )
@@ -89,7 +82,7 @@ export const App = () => {
   return (
     <div className="container">
        <div className="form-group" >
-        <h1>Dobro dosli, molim registrujte se</h1>
+        <h1>Dobro dosli, molim registrujte se </h1>
         <label htmlFor="username">Unesite vase ime:  </label>
         <input type="text" value={userName} onChange={userInput} />
         </div>
@@ -97,7 +90,7 @@ export const App = () => {
         <label htmlFor="password">Unesite vasu lozinku:  </label>
         <input type="text" value={password} onChange={passwordInput} />
       </div>
-      <button className="button" onClick={register}>Register</button>
+      <button className="button" onClick={register}> Register </button>
     </div>
   )
 
