@@ -1,25 +1,95 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export const App = () => {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  // const [userNameLogin, setUserNameLogin] = useState('');
+  // const [passwordLogin, setPasswordLogin] = useState('');
+  const [registration, setRegistration] = useState({});
+  const [acess, setAcess] = useState(false);
+
+  const login = () => {
+    if(registration.username === userName && registration.password === password) {
+      setAcess(true);
+      return (
+        <div>
+          <h1>Ulogovali ste se!</h1>
+        </div>
+      )
+    }
+  }
+  if(acess) {
+    return(
+      <div className="container">
+        Usli ste tamo gde niko do sada nije!
+      </div>
+    )
+  }
+  const handleButtonDelete = () => {
+    setUserName('');
+    setPassword('');
+    return(
+      <div>
+// kako da vratim na registraciju?
+      </div>
+    )
+  }
+
+  const userInput = (event) => {
+    let loginValue = event.target.value;
+    setUserName(loginValue);
+  }
+  const passwordInput = (event) => {
+    let passwordValue = event.target.value;
+    setPassword(passwordValue);
+  }
+  const register = () => {
+    let accountObj = {
+      username : userName,
+      password : password
+    };
+    setRegistration(accountObj);
+    setUserName('');
+    setPassword('');
+    console.log(registration);
+  }
+  //zasto ovo ne ide u regiser iznad nego ide zasebno?
+  if(registration.username && registration.password) {
+    return (
+      <div className="container">
+       <h1>Cestitam. Uspesno ste se registrovali!</h1>
+       <h3>Molim ulogujte se</h3>
+       <div className="form-group">
+          <label htmlFor="">Korisnicko ime:  </label>
+          <input type="text" value={userName} onChange={userInput}></input>
+       </div>
+       <div className="form-group" >
+          <label htmlFor="">Lozinka:  </label>
+          <input type="text" value={password} onChange={passwordInput}></input>
+       </div>
+       <button className="button" onClick={login}>Login</button>
+       <button className="btn" onClick={handleButtonDelete} >Obrisi moj nalog</button>
     </div>
-  );
+    )
+  };
+  
+
+  return (
+    <div className="container">
+       <div className="form-group" >
+        <label htmlFor="username">Unesite vase ime:  </label>
+        <input type="text" value={userName} onChange={userInput} />
+        </div>
+       <div className="form-group" >
+        <label htmlFor="password">Unesite vasu lozinku:  </label>
+        <input type="text" value={password} onChange={passwordInput} />
+      </div>
+      <button className="button" onClick={register}>Register</button>
+    </div>
+  )
+
 }
 
 export default App;
