@@ -18,12 +18,22 @@ export const App = () => {
           <h1>Ulogovali ste se!</h1>
         </div>
       )
+    } else if (registration.username === userName || registration.password === password) {
+      alert('niste uneli odgovaraje korisnicko ime ili lozinku');
+      setUserName('');
+      setPassword('');
     }
+  }
+  const logOut = () => {
+    setAcess(false);
+    setUserName('');
+    setPassword('');
   }
   if(acess) {
     return(
       <div className="container">
         Usli ste tamo gde niko do sada nije!
+        <button className="btn" onClick={logOut}>Izloguj se</button>
       </div>
     )
   }
@@ -79,6 +89,7 @@ export const App = () => {
   return (
     <div className="container">
        <div className="form-group" >
+        <h1>Dobro dosli, molim registrujte se</h1>
         <label htmlFor="username">Unesite vase ime:  </label>
         <input type="text" value={userName} onChange={userInput} />
         </div>
