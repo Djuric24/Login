@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
-
+// local storage, username i password da moze i posle refresha da radi, slika
 export const App = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -25,7 +24,7 @@ export const App = () => {
   if(acess) {
     return(
       <div className="container">
-        <h1>Usli ste tamo gde niko do sada nije!</h1>
+        <h1>Odobren vam je pristup</h1>
         <button className="btn" onClick={logOut}>Izloguj se</button>
       </div>
     )
@@ -58,7 +57,7 @@ export const App = () => {
     setPassword('');
     console.log(registration);
   }
-  //zasto ovo ne ide u regiser iznad nego ide zasebno?
+
   if(registration.username && registration.password) {
     return (
       <div className="container">
@@ -73,7 +72,7 @@ export const App = () => {
           <input type="text" value={password} onChange={passwordInput}></input>
        </div>
        <button className="button" onClick={login}> Login </button>
-       <button className="btn" onClick={handleButtonDelete} >Obrisi moj nalog</button>
+       <button className="btn" onClick={handleButtonDelete} >Obrisi unos</button>
     </div>
     )
   };
