@@ -1,15 +1,32 @@
 import React from "react";
-import { useState } from "react";
-// local storage, username i password da moze i posle refresha da radi, slika
+import { useState, useEffect } from "react";
+
 export const App = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [registration, setRegistration] = useState({});
   const [acess, setAcess] = useState(false);
 
+  useEffect(() => {
+    const storedUserName = localStorage.getItem('userName');
+    const storedPassword = localStorage.getItem('password');
+    const storedRegistration = localStorage.getItem('registration');
+
+    if(storedUserName) {
+      setUserName(storedUserName);
+    }
+    if(storedPassword) {
+      setPassword(storedPassword);
+    }
+    if(storedRegistration) {
+      setRegistration(JSON.parse(storedRegistration));
+    }
+  }, []);
+
   const login = () => {
     if(registration.username === userName && registration.password === password) {
       setAcess(true);
+       localStorage.setItem('loggedInUser', JSON.stringify(registration));
     } else if (registration.username === userName || registration.password === password) {
       alert('niste uneli odgovaraje korisnicko ime ili lozinku');
       setUserName('');
@@ -26,26 +43,26 @@ export const App = () => {
       <div className="container">
         <h1>Odobren vam je pristup</h1>
         <button className="btn" onClick={logOut}>Izloguj se</button>
+        <img src="https://st4.depositphotos.com/23601168/25283/i/450/depositphotos_252831914-stock-photo-close-view-arsenal-gunners-logo.jpg" alt="" />
       </div>
     )
   }
   const handleButtonDelete = () => {
+    setRegistration({});
     setUserName('');
     setPassword('');
-    return(
-      <div>
-// kako da vratim na registraciju?
-      </div>
-    )
+    return
   }
 
   const userInput = (event) => {
     let loginValue = event.target.value;
     setUserName(loginValue);
+    localStorage.setItem('userName',loginValue);
   }
   const passwordInput = (event) => {
     let passwordValue = event.target.value;
     setPassword(passwordValue);
+    localStorage.setItem('password',passwordValue);
   }
   const register = () => {
     let accountObj = {
@@ -55,7 +72,8 @@ export const App = () => {
     setRegistration(accountObj);
     setUserName('');
     setPassword('');
-    console.log(registration);
+    localStorage.setItem('registration', JSON.stringify(accountObj));
+    // console.log(registration);
   }
 
   if(registration.username && registration.password) {
@@ -72,11 +90,10 @@ export const App = () => {
           <input type="text" value={password} onChange={passwordInput}></input>
        </div>
        <button className="button" onClick={login}> Login </button>
-       <button className="btn" onClick={handleButtonDelete} >Obrisi unos</button>
+       <button className="btn" onClick={handleButtonDelete} >Register</button>
     </div>
     )
   };
-  
 
   return (
     <div className="container">
