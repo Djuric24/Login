@@ -1,6 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+//umesto slike kad se ulogujem da bude counter , - broj +
+//i na klik minus i plus da radi minus i plus 1 na pocetni broj
+//da pamti za svakog korisnika koji je trenutni broj i kad se ulogujes da vrati na pocetni broj tog korisnika
+//i da sifra kad se logujem nepokaze koju kucam     x
 export const App = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -33,6 +36,9 @@ export const App = () => {
       setPassword('');
     }
   }
+  const numberChange = () => {
+    
+  }
   const logOut = () => {
     setAcess(false);
     setUserName('');
@@ -43,7 +49,9 @@ export const App = () => {
       <div className="container">
         <h1>Odobren vam je pristup</h1>
         <button className="btn" onClick={logOut}>Izloguj se</button>
-        <img src="https://st4.depositphotos.com/23601168/25283/i/450/depositphotos_252831914-stock-photo-close-view-arsenal-gunners-logo.jpg" alt="" />
+        <button>+</button>
+        <input type="text" onChange={numberChange} />
+        <button>-</button>
       </div>
     )
   }
@@ -67,7 +75,8 @@ export const App = () => {
   const register = () => {
     let accountObj = {
       username : userName,
-      password : password
+      password : password,
+      // currentNumber : 0
     };
     setRegistration(accountObj);
     setUserName('');
@@ -87,7 +96,7 @@ export const App = () => {
        </div>
        <div className="form-group" >
           <label htmlFor="">Lozinka:  </label>
-          <input type="text" value={password} onChange={passwordInput}></input>
+          <input type="password" className="password-input" value={password} onChange={passwordInput}></input>
        </div>
        <button className="button" onClick={login}> Login </button>
        <button className="btn" onClick={handleButtonDelete} >Register</button>
@@ -104,7 +113,7 @@ export const App = () => {
         </div>
        <div className="form-group" >
         <label htmlFor="password">Unesite vasu lozinku:  </label>
-        <input type="text" value={password} onChange={passwordInput} />
+        <input type="password" className="password-input" value={password} onChange={passwordInput} />
       </div>
       <button className="button" onClick={register}> Register </button>
     </div>

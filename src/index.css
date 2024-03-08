@@ -64,3 +64,9 @@ img {
   margin-top: 10px;
   display: block;
 }
+.password-input {
+  font-family: 'arial';
+  letter-spacing: 4px;
+  color: black;
+  caret-color: black;
+}
