@@ -83,6 +83,7 @@ export const App = () => {
     setPassword('');
     localStorage.setItem('registration', JSON.stringify(accountObj));
     // console.log(registration);
+    // 
   }
 
   if(registration.username && registration.password) {
