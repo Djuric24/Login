@@ -9,6 +9,7 @@ export const App = () => {
   const [password, setPassword] = useState('');
   const [registration, setRegistration] = useState({});
   const [acess, setAcess] = useState(false);
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
     const storedUserName = localStorage.getItem('userName');
@@ -36,9 +37,6 @@ export const App = () => {
       setPassword('');
     }
   }
-  const numberChange = () => {
-    
-  }
   const logOut = () => {
     setAcess(false);
     setUserName('');
@@ -49,9 +47,9 @@ export const App = () => {
       <div className="container">
         <h1>Odobren vam je pristup</h1>
         <button className="btn" onClick={logOut}>Izloguj se</button>
-        <button>+</button>
-        <input type="text" onChange={numberChange} />
-        <button>-</button>
+        <button onClick={() => setNumber(number + 1)}>+</button>
+        <h1>{number}</h1>
+        <button onClick={() => setNumber(number - 1)}>-</button>
       </div>
     )
   }
