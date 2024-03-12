@@ -7,9 +7,48 @@ export const App = () => {
   const [password, setPassword] = useState('');
   const [loggedInUser, setLoggedInUser] = useState({});
   const [acess, setAcess] = useState(false);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(() => {
+    const storedNumber = localStorage.getItem('number');
+    return storedNumber ? parseInt(storedNumber, 10) : 0;
+  } );
+
+ 
+//   useEffect(() => {
+//   // Pratimo promene number i ažuriramo lokalno skladište
+//   const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) ?? [];
+//   const updatedUsers = storedUsers.map(user => {
+//     if (user.username === loggedInUser.username) {
+//       return {
+//         ...user,
+//         currentNumber: number
+//       };
+//     }
+//     return user;
+//   });
+
+//   localStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
+// }, [number, loggedInUser]);
+useEffect(() => {
+  const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+  const loggedInUser = storedUsers.find(user => user.username === userName);
+
+  if (loggedInUser) {
+    setNumber(loggedInUser.currentNumber || 0);
+  } else {
+    // Postavi vrednost number na 0 ako trenutni korisnik nije pronađen u lokalnom skladištu
+    setNumber(0);
+  }
+}, [userName]);
+
+
+
 
  const register = () => {
+  if(!userName || !password) {
+    alert('Molim unesite Vase korisnicko ime i lozinku');
+    return;
+  }
+  //ako nije ispunjeno da neupisuje nista u bazu
     let newUser = {
       username : userName,
       password : password,
@@ -21,23 +60,25 @@ export const App = () => {
     // setRegistration(accountObj);
     setUserName('');
     setPassword('');
-    // registeredUsers.push(accountObj);
-    // izvuces sve registracije iz localst i dodas zadnju registraciju i upises
-    // localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
   }
 
   const login = () => {
     const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers"))
+    let found = false
     console.log(registeredUsers);
 
     registeredUsers.forEach((user) => {
         if(user.username === userName && user.password === password) {
           setAcess(true);
+          found = true
           setLoggedInUser(user);
+          setUserName('');
+          setPassword('');
         }
     })
-      setUserName('');
-      setPassword('');
+    if(found === false) {
+      alert("nije dobro")
+    }
     }
 
   const logOut = () => {
@@ -48,11 +89,14 @@ export const App = () => {
   if(acess) {
     return(
       <div className="container">
-        <h1> Welcome {loggedInUser.username}</h1>
-        <button className="btn" onClick={logOut}>Izloguj se</button>
-        <button onClick={() => setNumber(number + 1)}>+</button>
+        <h1> Welcome   {loggedInUser.username}</h1>
+        <button onClick={() => {
+          setNumber(number + 1);
+          console.log('POvecano na:', number + 1);
+          }}>+</button>
         <h1>{number}</h1>
         <button onClick={() => setNumber(number - 1)}>-</button>
+        <button className="btn" onClick={logOut}>Izloguj se</button>
         
       </div>
     ) 
@@ -89,11 +133,7 @@ export const App = () => {
     </div>
     )
   };
-// Kad se refreshuje da zapamti podatke,da moze vise korisnika
-// pravis novu funckiju koja na svaki pritisak dugmeta upisuje novu vrednost za broj u localstorrage
-// useEfect(() => {
-    // kad se klikne na dugme da upise u localstorage
-// },[number])  
+  
 return (
     <div className="container">
        <div className="form-group" >

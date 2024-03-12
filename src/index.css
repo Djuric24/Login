@@ -12,7 +12,10 @@ body {
 .container {
   background-color: #fff;
   border-radius: 8px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -24,13 +27,13 @@ body {
 
 .label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
 .input {
   width: 100%;
-  padding: 20px;
+  padding: 25px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -39,8 +42,8 @@ body {
 .button,
 .btn {
   background-color: #4caf50;
-  color: #fff;
-  padding: 10px 15px;
+  color: hsl(0, 0%, 100%);
+  padding: 15px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -58,12 +61,6 @@ body {
   background-color: #45a049;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
-  display: block;
-}
 .password-input {
   font-family: 'arial';
   letter-spacing: 4px;
