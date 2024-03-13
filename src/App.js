@@ -90,12 +90,12 @@ useEffect(() => {
     return(
       <div className="container">
         <h1> Welcome   {loggedInUser.username}</h1>
-        <button onClick={() => {
+        <button className="operation" onClick={() => {
           setNumber(number + 1);
           console.log('POvecano na:', number + 1);
           }}>+</button>
         <h1>{number}</h1>
-        <button onClick={() => setNumber(number - 1)}>-</button>
+        <button className="operation" onClick={() => setNumber(number - 1)}>-</button>
         <button className="btn" onClick={logOut}>Izloguj se</button>
         
       </div>
