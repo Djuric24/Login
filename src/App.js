@@ -20,7 +20,7 @@ useEffect(() => {
  const register =async () => {
   if(!userName || !password) {
     alert('Molim unesite Vase korisnicko ime i lozinku');
-    return; //ovaj return ne radi?
+    return; //ovaj return ne radi
   }
   //ako nije ispunjeno da neupisuje nista u bazu
     let newUser = {
@@ -68,7 +68,7 @@ const updateUserOnBackend = async () => {
     setUserName('');
     setPassword('');
   }
-  // ako nepostoji grad , ispod welcome da pise input sa labelom unesi grad
+  // ako nepostoji grad, ispod welcome da pise input sa labelom unesi grad
   if(acess) {
     if(!odgovorSaServera.city) {
       return (
