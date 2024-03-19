@@ -3,12 +3,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 export const App = () => {
   const apiUrl = "http://localhost:3333"
-  const [page,setPage] = useState("login")
+  const [page,setPage] = useState("login");
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [loggedInUser, setLoggedInUser] = useState({});
   const [acess, setAcess] = useState(false);
   const [number, setNumber] = useState(0);
+  
 
 useEffect(() => {
   console.log(number);
@@ -32,7 +33,7 @@ useEffect(() => {
     console.log(res?.data)
     setUserName('');
     setPassword('');
-    setPage('login'); //proslo
+    setPage('login'); //proslo 
     //zadatak da proveri da li je uspesan register i tek onda da prebaci na log
   }
 const updateUserOnBackend = async () => {
