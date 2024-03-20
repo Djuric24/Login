@@ -71,7 +71,7 @@ const updateUserOnBackend = async () => {
   }
   // ako nepostoji grad, ispod welcome da pise input sa labelom unesi grad
   if(acess) {
-    if(!odgovorSaServera.city) {
+    if(!loggedInUser.city) { 
       return (
         <div className="container">
           <h1> Welcome   {loggedInUser?.username}</h1>
