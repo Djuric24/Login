@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
+import './index.css'; 
 import { useState, useEffect } from "react";
 export const App = () => {
-  const apiUrl = "http://localhost:3333"
+  const apiUrl = "http://localhost:5000"
   const [page,setPage] = useState("login");
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -94,7 +95,11 @@ const updateUserOnBackend = async () => {
       
         <div className="container">
           <h1> Welcome   {loggedInUser?.username}</h1>
-          
+          {/* {!loggedInUser.city && <div>
+             <label htmlFor="">Unesi grad</label>
+          <input type="text" />
+            </div>} */}
+            
           <button className="operation" onClick={() => {
             setNumber(number + 1);
             console.log('POvecano na:', number + 1);
@@ -123,23 +128,27 @@ const updateUserOnBackend = async () => {
  
 
   if(page === "login") {
+    //napraviti dugme da ako nezelim da se registruje da me vrati na login
     return (
       <div className="container">
        <h3>Molim ulogujte se</h3>
-       <div className="form-group">
+       {/* <div className="form-group">
           <label htmlFor="">Korisnicko ime:  </label>
           <input type="text" value={userName} onChange={userInput}></input>
-       </div>
+       </div> */}
+     
+          <input type="text" value={userName} onChange={userInput} class="input"></input>
+        
        <div className="form-group" >
           <label htmlFor="">Lozinka:  </label>
           <input type="password" className="password-input" value={password} onChange={passwordInput}></input>
        </div>
-       <button className="button" onClick={login}> Login </button>
-       <button className="btn" onClick={() => setPage("register")} >Register</button>
+       <button className="button-primary" onClick={login}> Login </button>
+       <button className="button-succes" onClick={() => setPage("register")} >Register</button>
     </div>
     )
   };
-  
+if(page === "register"){
 return (
     <div className="container">
        <div className="form-group" >
@@ -152,12 +161,14 @@ return (
         <input type="password" className="password-input" value={password} onChange={passwordInput} />
       </div>
 
-      <button className="button" onClick={() => {
+      <button className="button-succes" onClick={() => {
         register()
         setPage("login")
         }}> Register </button>
+        <button className="button-danger" onClick={() => {setPage("login")}}>Back to login</button>
     </div>
   )
+}
 
 }
 
