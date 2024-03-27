@@ -136,13 +136,14 @@ const updateUserOnBackend = async () => {
           <label htmlFor="">Korisnicko ime:  </label>
           <input type="text" value={userName} onChange={userInput}></input>
        </div> */}
-     
-          <input type="text" value={userName} onChange={userInput} class="input"></input>
-        
-       <div className="form-group" >
+        <label htmlFor="username">Unesite vase ime:  </label>
+        <input type="text" value={userName} onChange={userInput} class="input"></input>
+        <label htmlFor="password">Unesite vasu lozinku:  </label> 
+        <input type="password" value={password} onChange={passwordInput} class="input"></input>
+       {/* <div className="form-group" >
           <label htmlFor="">Lozinka:  </label>
           <input type="password" className="password-input" value={password} onChange={passwordInput}></input>
-       </div>
+       </div> */}
        <button className="button-primary" onClick={login}> Login </button>
        <button className="button-succes" onClick={() => setPage("register")} >Register</button>
     </div>
@@ -154,13 +155,14 @@ return (
        <div className="form-group" >
         <h1>Dobro dosli, molim registrujte se </h1>
         <label htmlFor="username">Unesite vase ime:  </label>
-        <input type="text" value={userName} onChange={userInput} />
+        <input type="text" value={userName} onChange={userInput} class="input"></input>
+        {/* <input type="text" value={userName} onChange={userInput} /> */}
         </div>
        <div className="form-group" >
         <label htmlFor="password">Unesite vasu lozinku:  </label>
-        <input type="password" className="password-input" value={password} onChange={passwordInput} />
+        {/* <input type="password" className="password-input" value={password} onChange={passwordInput} /> */}
+        <input type="password" value={password} onChange={passwordInput} class="input"></input>
       </div>
-
       <button className="button-succes" onClick={() => {
         register()
         setPage("login")
