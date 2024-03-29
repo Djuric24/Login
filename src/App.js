@@ -25,11 +25,7 @@ export const App = () => {
     let passwordValue = event.target.value;
     setPassword(passwordValue);
   }
-// - update city kao i number, salje city kao deo objekta
-// - dugme da se napravi za reset city.  update da radi, ali da salje undefined.
-// - dugme style da se inplementira
-// - input style isto da se implementira
-
+// - dugme da za reset city.  update, ili undefined.
 
 useEffect(() => {
   if(loggedInUser.id && loggedInUser.number !== number) {
@@ -40,7 +36,7 @@ useEffect(() => {
  const register =async () => {
   if(!userName || !password) {
     alert('Molim unesite Vase korisnicko ime i lozinku');
-    return; //ovaj return ne radi
+    return;
   }
   //ako nije ispunjeno da neupisuje nista u bazu
     let newUser = {
@@ -52,8 +48,8 @@ useEffect(() => {
     // console.log(res?.data)
     setUserName('');
     setPassword('');
-    setPage('login'); //proslo 
-    //zadatak da proveri da li je uspesan register i tek onda da prebaci na log
+    setPage('login'); 
+    
   }
 const updateUserOnBackend = async () => {
   const updatedUser = {
@@ -75,7 +71,6 @@ const updateUserOnBackend = async () => {
     let res = await axios.post(apiUrl+"/login",user);
     let odgovorSaServera = res.data
     if(odgovorSaServera.id) {
-      
       setLoggedInUser(odgovorSaServera);
       setNumber(odgovorSaServera.number);
       setAcess(true);
@@ -93,7 +88,6 @@ const updateUserOnBackend = async () => {
   }
 
   if(acess) {
-    
       return(
         <div className="container">
           <h1> Welcome   {loggedInUser?.username}</h1>
@@ -132,7 +126,6 @@ const updateUserOnBackend = async () => {
  
 
   if(page === "login") {
-    //napraviti dugme da ako nezelim da se registruje da me vrati na login
     return (
       <div className="container">
        <h3>Molim ulogujte se</h3>
@@ -160,11 +153,9 @@ return (
         <h1>Dobro dosli, molim registrujte se </h1>
         <label htmlFor="username">Unesite vase ime:  </label>
         <input type="text" value={userName} onChange={userInput} className="input"></input>
-        {/* <input type="text" value={userName} onChange={userInput} /> */}
         </div>
        <div className="form-group" >
         <label htmlFor="password">Unesite vasu lozinku:  </label>
-        {/* <input type="password" className="password-input" value={password} onChange={passwordInput} /> */}
         <input type="password" value={password} onChange={passwordInput} className="input"></input>
       </div>
       <button className="button-succes" onClick={() => {
