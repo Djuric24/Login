@@ -25,7 +25,7 @@ export const App = () => {
     let passwordValue = event.target.value;
     setPassword(passwordValue);
   }
-// - dugme da za reset city.  update, ili undefined.
+// - dugme da za reset city.  update , ili undefined.
 
 useEffect(() => {
   if(loggedInUser.id && loggedInUser.number !== number) {
