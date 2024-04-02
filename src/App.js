@@ -38,7 +38,7 @@ useEffect(() => {
     alert('Molim unesite Vase korisnicko ime i lozinku');
     return;
   }
-  //ako nije ispunjeno da neupisuje nista u bazu
+  //ako nije ispunjeno da neupisuje nista u bazu 
     let newUser = {
       username : userName,
       password : password,
