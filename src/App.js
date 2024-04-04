@@ -122,9 +122,6 @@ const updateUserOnBackend = async () => {
     
   }
 
- 
- 
-
   if(page === "login") {
     return (
       <div className="container">
